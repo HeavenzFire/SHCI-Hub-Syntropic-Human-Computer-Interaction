@@ -1,0 +1,7 @@
+{
+  "name": "SHCI Hub: Syntropic Human-Computer Interaction",
+  "description": "A collaborative platform for advancing Syntropic Human-Computer Interaction (SHCI), focusing on resonant audio for nervous-system regulation, decentralized guardianship, and ethical AI norms.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
