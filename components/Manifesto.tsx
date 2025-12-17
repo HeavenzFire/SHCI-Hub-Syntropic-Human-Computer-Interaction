@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { MANIFESTO_SECTIONS } from '../constants';
 import { draftPaperSection } from '../services/geminiService';
+import { jsPDF } from 'jspdf';
 
 const Manifesto: React.FC = () => {
   const [activeSection, setActiveSection] = useState(MANIFESTO_SECTIONS[0].id);
@@ -18,6 +19,58 @@ const Manifesto: React.FC = () => {
     } finally {
       setIsLoading(null);
     }
+  };
+
+  const handleDownloadPDF = (sectionTitle: string, originalContent: string) => {
+    const doc = new jsPDF();
+    const drafted = draftedContent[sectionTitle] || "";
+    const margin = 15;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const textWidth = pageWidth - (margin * 2);
+
+    // Title
+    doc.setFontSize(22);
+    doc.setTextColor(79, 70, 229); // Indigo-600 color
+    doc.text(`SHCI Manifesto`, margin, 20);
+    doc.setFontSize(16);
+    doc.setTextColor(0, 0, 0);
+    doc.text(sectionTitle, margin, 30);
+
+    // Original Content Section
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text("Core Principles:", margin, 45);
+    doc.setFont("helvetica", "normal");
+    const splitOriginal = doc.splitTextToSize(originalContent, textWidth);
+    doc.text(splitOriginal, margin, 52);
+
+    // Drafted Content Section (if exists)
+    if (drafted) {
+      let currentY = 52 + (splitOriginal.length * 7) + 15;
+      
+      // Add page if needed
+      if (currentY > 260) {
+        doc.addPage();
+        currentY = 20;
+      }
+
+      doc.setFont("helvetica", "bold");
+      doc.text("Synthesized Research Extension:", margin, currentY);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      const splitDrafted = doc.splitTextToSize(drafted, textWidth);
+      
+      // Handle multi-page drafting if necessary
+      doc.text(splitDrafted, margin, currentY + 7);
+    }
+
+    // Footer
+    const footerY = doc.internal.pageSize.getHeight() - 10;
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.text("Generated via SHCI Hub - Bryer's Light Institute", margin, footerY);
+
+    doc.save(`SHCI_Manifesto_${sectionTitle.replace(/\s+/g, '_')}.pdf`);
   };
 
   return (
@@ -48,7 +101,7 @@ const Manifesto: React.FC = () => {
               </div>
 
               {draftedContent[section.title] && (
-                <div className="mt-8 p-6 bg-indigo-950/20 border border-indigo-900/50 rounded-xl font-serif italic text-gray-400">
+                <div className="mt-8 p-6 bg-indigo-950/20 border border-indigo-900/50 rounded-xl font-serif italic text-gray-400 border-l-4 border-l-indigo-500">
                   <h4 className="text-sm font-bold uppercase tracking-widest text-indigo-400 mb-2">Extended Draft (AI Synthesized)</h4>
                   <p className="whitespace-pre-wrap">{draftedContent[section.title]}</p>
                 </div>
@@ -67,8 +120,11 @@ const Manifesto: React.FC = () => {
                   )}
                   Synthesize Extended Draft
                 </button>
-                <button className="px-6 py-2 border border-gray-700 hover:bg-gray-800 rounded-full transition-all">
-                  <i className="fas fa-file-pdf mr-2"></i>
+                <button 
+                  onClick={() => handleDownloadPDF(section.title, section.content)}
+                  className="px-6 py-2 border border-gray-700 hover:bg-gray-800 rounded-full transition-all flex items-center gap-2"
+                >
+                  <i className="fas fa-file-pdf text-red-400"></i>
                   Download PDF
                 </button>
               </div>

@@ -39,7 +39,7 @@ export const FOUNDATION_CHARTER = {
   ]
 };
 
-export const STRATEGIC_ROADMAP: RoadmapPhase[] = [
+export const STRATEGIC_ROADMAP: (RoadmapPhase & { weeklyDetail: string[] })[] = [
   {
     id: 1,
     title: "Public Launch & Artifact Release",
@@ -55,7 +55,13 @@ export const STRATEGIC_ROADMAP: RoadmapPhase[] = [
       "Announce on Hacker News/Reddit",
       "Enable initial feedback capture"
     ],
-    outcome: "SHCI becomes externally verifiable and starts building a core community."
+    outcome: "SHCI becomes externally verifiable and starts building a core community.",
+    weeklyDetail: [
+      "Week 1: Infrastructure lock & CI/CD deployment.",
+      "Week 2: SHA-256 hashing of all resonant audio logs.",
+      "Week 3: Public launch and community announcement cycle.",
+      "Week 4: Feedback synthesis and first protocol patch."
+    ]
   },
   {
     id: 2,
@@ -73,7 +79,13 @@ export const STRATEGIC_ROADMAP: RoadmapPhase[] = [
       "Encourage NGO pilot modules",
       "Prioritize backlog via user feedback"
     ],
-    outcome: "SHCI functions as a living laboratory with early validation data."
+    outcome: "SHCI functions as a living laboratory with early validation data.",
+    weeklyDetail: [
+      "Week 5: Launch official SHCI Discord/GitHub Discussions.",
+      "Week 6: Live stream demonstration of the 100-phase pipeline.",
+      "Week 7: NGO outreach and partner onboarding.",
+      "Week 8: Community data review and 'Syntropy Challenge' kickoff."
+    ]
   },
   {
     id: 3,
@@ -90,6 +102,12 @@ export const STRATEGIC_ROADMAP: RoadmapPhase[] = [
       "Deploy Automated Verification Ledger",
       "Build portfolio of real-world case studies"
     ],
-    outcome: "SHCI is recognized as a pioneering intersection of ethics and AI synthesis."
+    outcome: "SHCI is recognized as a pioneering intersection of ethics and AI synthesis.",
+    weeklyDetail: [
+      "Week 9: Peer-review ready paper drafting (arXiv focus).",
+      "Week 10: Launch the 'Living Ledger' verification portal.",
+      "Week 11: Case study publication (Resonant Audio in pilot).",
+      "Week 12: Roadmap v2.0 & Field Sustainability Review."
+    ]
   }
 ];

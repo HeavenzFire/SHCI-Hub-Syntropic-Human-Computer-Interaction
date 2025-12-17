@@ -18,7 +18,9 @@ export enum AppSection {
   FOUNDATION = 'foundation',
   CHALLENGE = 'challenge',
   AI_ASSISTANT = 'ai_assistant',
-  ROADMAP = 'roadmap'
+  ROADMAP = 'roadmap',
+  SIGNAL_LAB = 'signal_lab',
+  VAULT = 'vault'
 }
 
 export interface RoadmapPhase {
@@ -29,4 +31,12 @@ export interface RoadmapPhase {
   objectives: string[];
   actions: string[];
   outcome: string;
+}
+
+export interface Artifact {
+  id: string;
+  timestamp: string;
+  type: string;
+  hash: string;
+  data: any;
 }
