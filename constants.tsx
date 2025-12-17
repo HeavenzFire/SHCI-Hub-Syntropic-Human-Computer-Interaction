@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BenchmarkData, ManifestoSection } from './types';
+import { BenchmarkData, ManifestoSection, RoadmapPhase } from './types';
 
 export const INITIAL_BENCHMARK_DATA: BenchmarkData[] = [
   { phase: 10, coherence: 0.45, kIndex: 0.2, regulationScore: 30 },
@@ -38,3 +38,58 @@ export const FOUNDATION_CHARTER = {
     "Decentralized, local-first guardianship"
   ]
 };
+
+export const STRATEGIC_ROADMAP: RoadmapPhase[] = [
+  {
+    id: 1,
+    title: "Public Launch & Artifact Release",
+    weeks: "Weeks 1–4",
+    status: "active",
+    objectives: [
+      "Make SHCI Hub fully visible and usable",
+      "Release core syntropy artifacts"
+    ],
+    actions: [
+      "Deploy Hub on Render/Railway",
+      "Publish SHA-256 verified datasets",
+      "Announce on Hacker News/Reddit",
+      "Enable initial feedback capture"
+    ],
+    outcome: "SHCI becomes externally verifiable and starts building a core community."
+  },
+  {
+    id: 2,
+    title: "Community & Collaboration",
+    weeks: "Weeks 5–8",
+    status: "pending",
+    objectives: [
+      "Engage early adopters",
+      "Encourage forks and extensions",
+      "Collect usage data"
+    ],
+    actions: [
+      "Open Discord/Slack channels",
+      "Conduct live Syntropy Score workshops",
+      "Encourage NGO pilot modules",
+      "Prioritize backlog via user feedback"
+    ],
+    outcome: "SHCI functions as a living laboratory with early validation data."
+  },
+  {
+    id: 3,
+    title: "Iterative Expansion & Validation",
+    weeks: "Weeks 9–12",
+    status: "future",
+    objectives: [
+      "Solidify SHCI as a replicable framework",
+      "Prepare for academic/practitioner visibility"
+    ],
+    actions: [
+      "Integrate adaptive semantic gap modules",
+      "Publish results on arXiv and Medium",
+      "Deploy Automated Verification Ledger",
+      "Build portfolio of real-world case studies"
+    ],
+    outcome: "SHCI is recognized as a pioneering intersection of ethics and AI synthesis."
+  }
+];

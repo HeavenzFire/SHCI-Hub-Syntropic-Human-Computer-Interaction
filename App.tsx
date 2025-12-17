@@ -5,6 +5,7 @@ import Manifesto from './components/Manifesto';
 import BenchmarkDashboard from './components/BenchmarkDashboard';
 import Foundation from './components/Foundation';
 import AIAgent from './components/AIAgent';
+import Roadmap from './components/Roadmap';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<AppSection>(AppSection.MANIFESTO);
@@ -19,6 +20,8 @@ const App: React.FC = () => {
         return <Foundation />;
       case AppSection.AI_ASSISTANT:
         return <AIAgent />;
+      case AppSection.ROADMAP:
+        return <Roadmap />;
       case AppSection.CHALLENGE:
         return (
           <div className="text-center py-20 space-y-6 glass rounded-2xl">
@@ -44,7 +47,7 @@ const App: React.FC = () => {
       <header className="sticky top-0 z-50 glass border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded bg-indigo-600 flex items-center justify-center font-bold">S</div>
+            <div className="w-8 h-8 rounded bg-indigo-600 flex items-center justify-center font-bold shadow-lg shadow-indigo-500/30">S</div>
             <h1 className="text-xl font-bold tracking-tight">SHCI <span className="text-indigo-400">HUB</span></h1>
           </div>
           
@@ -52,6 +55,7 @@ const App: React.FC = () => {
             {[
               { id: AppSection.MANIFESTO, label: 'Manifesto', icon: 'fa-file-alt' },
               { id: AppSection.BENCHMARKS, label: 'Benchmarks', icon: 'fa-chart-line' },
+              { id: AppSection.ROADMAP, label: 'Roadmap', icon: 'fa-map-signs' },
               { id: AppSection.FOUNDATION, label: 'Foundation', icon: 'fa-landmark' },
               { id: AppSection.AI_ASSISTANT, label: 'AI Agent', icon: 'fa-robot' },
               { id: AppSection.CHALLENGE, label: 'Challenge', icon: 'fa-bolt' },
@@ -61,7 +65,7 @@ const App: React.FC = () => {
                 onClick={() => setActiveSection(nav.id)}
                 className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-all ${
                   activeSection === nav.id 
-                    ? 'bg-white/10 text-white font-medium' 
+                    ? 'bg-white/10 text-white font-medium shadow-inner' 
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -71,9 +75,15 @@ const App: React.FC = () => {
             ))}
           </nav>
 
-          <button className="md:hidden text-gray-400 p-2">
-            <i className="fas fa-bars text-xl"></i>
-          </button>
+          <div className="flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-2 text-xs font-mono text-emerald-500 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              PHASE 1 ACTIVE
+            </div>
+            <button className="md:hidden text-gray-400 p-2">
+              <i className="fas fa-bars text-xl"></i>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -84,7 +94,7 @@ const App: React.FC = () => {
           <div className="inline-block px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold tracking-widest uppercase mb-2">
             Protocol v1.0 • SHCI
           </div>
-          <h2 className="text-5xl md:text-6xl font-black shci-text-gradient tracking-tight">
+          <h2 className="text-5xl md:text-6xl font-black shci-text-gradient tracking-tight leading-tight">
             Advancing the Field.
           </h2>
           <p className="text-lg text-gray-400 max-w-3xl leading-relaxed">

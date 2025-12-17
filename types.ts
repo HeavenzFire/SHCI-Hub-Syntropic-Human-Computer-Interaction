@@ -17,5 +17,16 @@ export enum AppSection {
   BENCHMARKS = 'benchmarks',
   FOUNDATION = 'foundation',
   CHALLENGE = 'challenge',
-  AI_ASSISTANT = 'ai_assistant'
+  AI_ASSISTANT = 'ai_assistant',
+  ROADMAP = 'roadmap'
+}
+
+export interface RoadmapPhase {
+  id: number;
+  title: string;
+  weeks: string;
+  status: 'active' | 'pending' | 'future';
+  objectives: string[];
+  actions: string[];
+  outcome: string;
 }
